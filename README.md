@@ -35,9 +35,9 @@ O projeto vem com um arquivo `.env.example` configurado para acessar o conhecime
     ```
 
 2.  Preencha suas chaves de IA no arquivo `.env`:
-    *   `GEMINI_API_KEY`: Necessária para gerar embeddings (Google AI Studio).
-    *   `OLLAMA_API_KEY`: Opcional (se rodar localmente sem auth).
-    
+    *   **Gemini**: Gere em [Google AI Studio](https://aistudio.google.com/app/api-keys).
+    *   **Ollama**: Gere em [Ollama Settings](https://ollama.com/settings/keys).
+
     > **Nota:** `SUPABASE_URL` e `SUPABASE_KEY` já vêm preenchidos com a chave pública (leitura), permitindo que você converse com a Tereza sem configurar banco de dados.
 
 ## Stack
