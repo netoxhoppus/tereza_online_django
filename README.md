@@ -22,7 +22,6 @@ Não espere trivialidades. Tereza enxerga o que está oculto nas entrelinhas.
 
 ```bash
 pip install -r requirements.txt
-python manage.py runserver
 ```
 
 ## Configuração
@@ -39,6 +38,14 @@ O projeto vem com um arquivo `.env.example` configurado para acessar o conhecime
     *   **Ollama**: Gere em [Ollama Settings](https://ollama.com/settings/keys).
 
     > **Nota:** `SUPABASE_URL` e `SUPABASE_KEY` já vêm preenchidos com a chave pública (leitura), permitindo que você converse com a Tereza sem configurar banco de dados.
+
+
+3. Rode o projeto:
+```bash
+python manage.py runserver 
+```
+Acesse em: [localhost](https://localhost:8000).
+
 
 ## Stack
 
