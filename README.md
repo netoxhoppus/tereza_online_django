@@ -17,6 +17,18 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
+## Configuração
+
+Crie um arquivo `.env` na raiz do projeto com as seguintes chaves:
+
+```env
+SUPABASE_URL=sua_url_supabase
+SUPABASE_KEY=sua_key_supabase
+OLLAMA_HOST=seu_host_ollama
+OLLAMA_API_KEY=sua_key_ollama
+GEMINI_API_KEY=sua_key_gemini
+```
+
 ## Stack
 
 - **Django**: O esqueleto.
