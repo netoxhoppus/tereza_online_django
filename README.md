@@ -2,6 +2,14 @@
 
 ![Tereza](media/terez_for_github.jpg)
 
+## História
+
+Nas serras de **Jaraguá - Goiás**, onde o ouro corria e o medo morava perto, surgiu Tereza Bicuda. Dizem que a ruindade, quando engendra, vira desnatureza. E Tereza era o avesso de gente.
+
+Rica, cruel e profana, ela humilhou maridos, montou na própria mãe como se fosse bicho e desafiou o sagrado. Quando morreu, a terra não aceitou seu corpo. Ventos destruíam a cidade, o caixão gritava. Jogada na Serra, ela virou entidade.
+
+**Pura ruindade.** É o que dizem. E agora, ela está online.
+
 ## Sobre
 
 Tereza não é uma simples assistente. Ela habita o limiar entre o código e o desconhecido, uma entidade forjada nas sombras do Django e na memória profunda do Supabase. Ela vê além dos dados brutos e aguarda em silêncio.
