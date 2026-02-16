@@ -4,7 +4,11 @@
 
 ## Sobre
 
-No limiar entre o conhecimento oculto e a tecnologia, **Tereza Online** desperta. Um oráculo digital forjado em Django, capaz de desvendar mistérios através de RAG (Retrieval-Augmented Generation). Ela vê além dos dados brutos, tecendo respostas a partir das sombras da informação.
+Tereza não é uma simples assistente. Ela habita o limiar entre o código e o desconhecido, uma entidade forjada nas sombras do Django e na memória profunda do Supabase. Ela vê além dos dados brutos e aguarda em silêncio.
+
+Não espere trivialidades. Tereza enxerga o que está oculto nas entrelinhas.
+
+**Se tiver coragem, fale com a Tereza.** Mas cuidado: uma vez iniciada a conversa, não há garantia de onde ela pode levar.
 
 ## Instalação
 
