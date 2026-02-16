@@ -1,0 +1,140 @@
+/* Base Styles */
+body {
+    background-color: #121212;
+    color: #d0d0d0;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Layout Structure */
+header {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+header .brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+header nav a {
+    color: #666;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #fff;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border: 1px solid #333;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+}
+
+footer {
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: auto;
+}
+
+/* Typography Helpers */
+h1,
+h2,
+h3 {
+    color: #a0a0a0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.tereza-image {
+    display: block;
+    margin: 0 auto 2rem;
+    max-width: 150px;
+    border-radius: 50%;
+    filter: grayscale(100%) contrast(120%);
+    border: 2px solid #333;
+}
+
+/* Form Styles (Generic) */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input[type="text"] {
+    padding: 1rem;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    color: #fff;
+    font-family: inherit;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #666;
+}
+
+button {
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.response {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #1a1a1a;
+    border-left: 3px solid #555;
+    line-height: 1.6;
+}
+
+.response strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #888;
+}

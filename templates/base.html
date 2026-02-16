@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tereza Online{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <a href="/" class="brand">Tereza Online</a>
+        <nav>
+            <!-- Adicionar links de admin aqui depois -->
+            <a href="#">Sobre</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Tereza Online. Cuidado com o que fala.
+    </footer>
+</body>
+
+</html>

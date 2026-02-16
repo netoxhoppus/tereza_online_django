@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="header-container">
+    <img src="{% static 'core/img/tereza.jpg' %}" alt="Tereza" class="tereza-image">
+    <div class="title-wrapper">
+        <h1>Tereza</h1>
+        <img src="{% static 'core/img/online.png' %}" alt="Online" class="status-image">
+    </div>
+    <div class="status-message">
+        "O vento tá virando e traz o cheiro do teu medo..."
+    </div>
+</div>
+
+<div id="chat-history" class="chat-history">
+    <!-- Messages from history -->
+    {% for msg in history %}
+    <div class="message {% if msg.role == 'user' %}user-message{% else %}tereza-message{% endif %}">
+        <strong>{% if msg.role == 'user' %}Você{% else %}Tereza{% endif %}:</strong>
+        {{ msg.content|linebreaksbr }}
+    </div>
+    {% endfor %}
+
+    <!-- Only show immediate response if not in history (for fallback) -->
+    {% if response and not history %}
+    <div class="message tereza-message">
+        <strong>Tereza:</strong>
+        {{ response|linebreaksbr }}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Typing Indicator -->
+<div id="typing-indicator" class="typing" style="display: none;">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+</div>
+
+<form id="chat-form" method="post">
+    {% csrf_token %}
+    <input type="text" id="user-input" name="message" placeholder="Fale, se tiver coragem..." required
+        autocomplete="off" autofocus>
+    <button type="submit">Enviar</button>
+</form>
+
+<style>
+    .chat-history {
+        width: 100%;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        height: 60vh;
+        overflow-y: auto;
+        padding-right: 10px;
+        /* Space for scrollbar */
+    }
+
+    /* Custom Scrollbar */
+    .chat-history::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .chat-history::-webkit-scrollbar-track {
+        background: #1a1a1a;
+        border-radius: 4px;
+    }
+
+    .chat-history::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+        border: 1px solid #444;
+    }
+
+    .chat-history::-webkit-scrollbar-thumb:hover {
+        background: #444;
+    }
+
+    .message {
+        padding: 1rem;
+        border-radius: 4px;
+        line-height: 1.5;
+        max-width: 80%;
+        word-wrap: break-word;
+        flex-shrink: 0;
+        /* Prevent shrinking */
+    }
+
+    .user-message {
+        align-self: flex-end;
+        background-color: #2a2a2a;
+        color: #d0d0d0;
+        border: 1px solid #444;
+        margin-left: auto;
+    }
+
+    .tereza-message {
+        align-self: flex-start;
+        background-color: #1a1a1a;
+        border-left: 3px solid #555;
+        color: #a0a0a0;
+        margin-right: auto;
+    }
+
+    .message strong {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    /* Typing Animation */
+    .typing {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem 0;
+        height: 24px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        background-color: #666;
+        border-radius: 50%;
+        margin: 0 4px;
+        animation: bounce 1.4s infinite ease-in-out both;
+    }
+
+    .dot:nth-child(1) {
+        animation-delay: -0.32s;
+    }
+
+    .dot:nth-child(2) {
+        animation-delay: -0.16s;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        80%,
+        100% {
+            transform: scale(0);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        }
+
+        40% {
+            transform: scale(1);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .status-image {
+        height: 20px;
+        /* Adjust size as needed */
+        filter: drop-shadow(0 0 5px #0f0);
+        /* Optional glowing effect */
+    }
+
+    .title-wrapper h1 {
+        margin: 0;
+        line-height: 1;
+    }
+
+    .status-message {
+        font-size: 0.8em;
+        font-style: italic;
+        color: #888;
+        margin-top: 2px;
+        text-align: center;
+    }
+</style>
+
+<script>
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('user-input');
+    const history = document.getElementById('chat-history');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    // Scroll to bottom helper
+    function scrollToBottom() {
+        history.scrollTop = history.scrollHeight;
+    }
+
+    // Add message to DOM
+    function appendMessage(sender, text, cssClass) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${cssClass}`;
+        msgDiv.innerHTML = `<strong>${sender}:</strong>${text.replace(/\n/g, '<br>')}`;
+        history.appendChild(msgDiv);
+        scrollToBottom();
+    }
+
+    // Submit handler
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const message = input.value.trim();
+        if (!message) return;
+
+        // Display user message
+        appendMessage('Você', message, 'user-message');
+        input.value = '';
+
+        // Show typing indicator
+        typingIndicator.style.display = 'flex';
+        scrollToBottom();
+
+        try {
+            // Get CSRF token
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            const response = await fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+
+            // Hide typing indicator
+            typingIndicator.style.display = 'none';
+
+            if (data.response) {
+                appendMessage('Tereza', data.response, 'tereza-message');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            typingIndicator.style.display = 'none';
+            appendMessage('Sistema', 'Erro ao conectar com Tereza. Tente novamente.', 'tereza-message');
+        }
+    }
+
+    form.addEventListener('submit', handleSubmit);
+
+    // Load scrolling
+    window.onload = scrollToBottom;
+</script>
+{% endblock %}

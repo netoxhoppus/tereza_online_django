@@ -27,15 +27,18 @@ python manage.py runserver
 
 ## Configuração
 
-Crie um arquivo `.env` na raiz do projeto com as seguintes chaves:
+O projeto vem com um arquivo `.env.example` configurado para acessar o conhecimento público da Tereza (Supabase).
 
-```env
-SUPABASE_URL=sua_url_supabase
-SUPABASE_KEY=sua_key_supabase
-OLLAMA_HOST=seu_host_ollama
-OLLAMA_API_KEY=sua_key_ollama
-GEMINI_API_KEY=sua_key_gemini
-```
+1.  Copie o exemplo:
+    ```bash
+    cp .env.example .env
+    ```
+
+2.  Preencha suas chaves de IA no arquivo `.env`:
+    *   `GEMINI_API_KEY`: Necessária para gerar embeddings (Google AI Studio).
+    *   `OLLAMA_API_KEY`: Opcional (se rodar localmente sem auth).
+    
+    > **Nota:** `SUPABASE_URL` e `SUPABASE_KEY` já vêm preenchidos com a chave pública (leitura), permitindo que você converse com a Tereza sem configurar banco de dados.
 
 ## Stack
 
