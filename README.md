@@ -1,6 +1,6 @@
 # Tereza Online
 
-![Tereza](media/terez_for_github.jpg)
+![Tereza](core/static/core/img/tereza.jpg)
 
 ## História
 
