@@ -44,7 +44,7 @@ O projeto vem com um arquivo `.env.example` configurado para acessar o conhecime
 ```bash
 python manage.py runserver 
 ```
-Acesse em: [localhost](https://localhost:8000).
+Acesse em: [localhost](http://localhost:8000).
 
 
 ## Stack
